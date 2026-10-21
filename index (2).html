@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="es-CL">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#611117">
+<meta name="description" content="re:visto. No todo es como lo viste. Explora una historia real para descubrir cómo una publicación auténtica puede desinformar al cambiarle el contexto.">
+<title>re:visto — El video era real, ¿y la historia?</title>
+<meta property="og:type" content="website">
+<meta property="og:title" content="re:visto · No todo es como lo viste">
+<meta property="og:description" content="Una experiencia informativa interactiva para descubrir cómo cambia el significado de un video cuando cambia su contexto.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&display=swap" rel="stylesheet">
+<style>
+:root{--vino:#621117;--lila:#beaedb;--petalo:#ead7c8;--oliva:#302a06;--papel:#faf7f1;--tinta:#231b19;--borde:#d4c5b8;--serif:'Playfair Display',Georgia,serif;--sans:'DM Sans',Arial,sans-serif;--mono:'DM Mono',monospace;--shadow:0 18px 45px #391d2012}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:var(--sans);background:var(--papel);color:var(--tinta);-webkit-font-smoothing:antialiased}button{font:inherit;cursor:pointer}a{color:inherit}button:focus-visible,a:focus-visible{outline:3px solid #8b668e;outline-offset:4px}[hidden]{display:none!important}
+.app{max-width:1440px;margin:0 auto;min-height:100vh;overflow:hidden;position:relative;background:var(--papel)}
+.topline{height:30px;background:var(--oliva);color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(20px,4vw,72px);text-transform:uppercase;letter-spacing:.1em;font:10px var(--mono)}
+.nav{height:84px;padding:0 clamp(20px,4vw,72px);border-bottom:1px solid var(--tinta);display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{font:600 41px/.91 var(--serif);letter-spacing:-.095em;color:var(--vino);white-space:nowrap;text-decoration:none}.brand em{font-weight:500;font-style:italic}.brand .colon{color:#8e718d;font-style:normal;letter-spacing:-.12em}
+.nav-right{display:flex;align-items:center;gap:25px;font:11px var(--mono);text-transform:uppercase;letter-spacing:.035em}.nav-right span{color:#716663}.nav-right button{background:transparent;border:1px solid var(--tinta);padding:10px 14px;text-transform:uppercase;font:11px var(--mono)}
+.progress{height:4px;background:#eadfd6;position:relative}.progress i{display:block;height:100%;width:25%;background:var(--vino);transition:width .5s cubic-bezier(.2,.9,.2,1)}
+.scene{display:none;min-height:calc(100vh - 170px);animation:scene .6s cubic-bezier(.2,.9,.2,1) both}.scene.active{display:block}@keyframes scene{from{opacity:.3;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.scene-pad{padding:clamp(26px,4vw,58px) clamp(20px,4vw,72px)}.eyebrow{font:11px var(--mono);text-transform:uppercase;letter-spacing:.07em;display:flex;align-items:center;gap:11px}.eyebrow:before{content:"";width:23px;height:1px;background:currentColor}.lede{font-size:15px;line-height:1.65;color:#564e4a;max-width:590px}.serif{font-family:var(--serif);font-weight:600;letter-spacing:-.065em}
+.primary{background:var(--vino);border:1px solid var(--vino);color:white;min-height:55px;padding:14px 20px;display:inline-flex;align-items:center;justify-content:space-between;gap:28px;min-width:218px;font-weight:700;font-size:13px;transition:transform .2s,box-shadow .2s}.primary:hover{transform:translateY(-3px);box-shadow:4px 5px 0 #bfadbd}.secondary{background:transparent;border:1px solid var(--vino);color:var(--vino);padding:12px 16px;min-height:47px;font-size:12px;font-weight:700}.secondary:hover{background:var(--petalo)}.arrow{font-size:22px;font-weight:400}.muted{color:#756d68}
+/* STORY 1 */
+.intro{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(340px,.95fr);margin:0 clamp(20px,4vw,72px);border-bottom:1px solid var(--tinta)}
+.intro-copy{padding:55px clamp(25px,4vw,62px) 50px 0;display:flex;flex-direction:column;align-items:flex-start}.intro h1{font:600 clamp(61px,6.9vw,114px)/.98 var(--serif);letter-spacing:-.095em;margin:23px 0 18px}.intro h1 em{color:var(--vino);display:block;font-weight:500;margin-bottom:12px}.intro .lede{margin:0 0 32px;max-width:430px}.intro .meta{display:inline-flex;gap:10px;align-items:center;font:10px var(--mono);text-transform:uppercase;margin-top:28px;color:#776b67}
+.postcol{background:var(--lila);padding:35px clamp(20px,3vw,49px) 45px;min-height:620px;border-left:1px solid var(--tinta);display:flex;flex-direction:column;position:relative;overflow:hidden}.posthead{font:10px var(--mono);letter-spacing:.08em;text-transform:uppercase;display:flex;justify-content:space-between;padding-bottom:13px;border-bottom:1px solid #543a5090}.post{position:relative;background:#fffdf9;border:1px solid var(--tinta);box-shadow:8px 10px 0 #7b658564;margin-top:28px;max-width:460px;width:100%;align-self:center;padding:14px;transform:rotate(-2deg);transition:transform .3s}.post:hover{transform:rotate(0)}.postprofile{display:flex;align-items:center;gap:9px;font-size:11px;font-weight:800;margin-bottom:12px}.avatar{width:30px;height:30px;background:var(--vino);color:white;border-radius:100%;display:grid;place-items:center;font:italic 20px var(--serif)}.postprofile small{display:block;font-size:9px;font-weight:400;color:#706865}.post p{font-size:13px;font-weight:800;line-height:1.4;margin:13px 0 6px}.post .tags{font:10px var(--mono);color:#645a61}.post .micro{display:flex;gap:20px;font:10px var(--mono);color:#69616b;border-top:1px solid #d9cbd7;margin-top:16px;padding-top:12px}.post .post-annot{font:8px var(--mono);text-align:right;color:#826c7b;margin-top:6px}
+/* Original graphic is a CSS illustration, NOT source media */
+.eclipse{position:relative;overflow:hidden;height:clamp(210px,23vw,300px);background:linear-gradient(180deg,#191526 0%,#30283b 55%,#554253 69%,#302f40 72%,#232438 100%)}.eclipse:before{content:"";width:110px;height:110px;position:absolute;top:15%;left:50%;transform:translateX(-50%);border-radius:50%;background:#0b0d15;box-shadow:0 0 0 2px #f7c9ac,0 0 23px 11px #f5ae8f9c,0 0 59px 29px #d67a8e66;animation:shimmer 4s ease-in-out infinite alternate}.eclipse:after{content:"";position:absolute;bottom:-10px;left:0;right:0;height:23%;background:linear-gradient(180deg,transparent,#171b2e),repeating-linear-gradient(-4deg,#e6a9a12a 0 1px,transparent 1px 11px);opacity:.8}.horizon{position:absolute;bottom:22%;left:0;right:0;border-top:2px solid #d8a7a350}.silhouette{position:absolute;bottom:14%;width:15px;height:50px;border-radius:12px 12px 0 0;background:#171923;z-index:1}.silhouette:before{content:"";position:absolute;width:18px;height:18px;border-radius:50%;top:-12px;left:-2px;background:#171923}.silhouette:nth-child(1){left:8%;height:55px}.silhouette:nth-child(2){left:15%;height:41px}.silhouette:nth-child(3){left:67%;height:49px}.silhouette:nth-child(4){left:75%;height:38px}.silhouette:nth-child(5){left:85%;height:62px}@keyframes shimmer{from{box-shadow:0 0 0 2px #f7c9ac,0 0 23px 11px #f5ae8f9c,0 0 59px 29px #d67a8e66}to{box-shadow:0 0 0 2px #ffdfca,0 0 31px 16px #f5ae8fad,0 0 78px 36px #d67a8e55}}
+.bubble{background:var(--petalo);padding:10px 13px;position:absolute;right:19px;bottom:17px;font:10px var(--mono);transform:rotate(5deg);max-width:180px;border:1px solid #836b5c}
+/* Story 2 */
+.split{display:grid;grid-template-columns:.88fr 1.12fr;min-height:calc(100vh - 170px)}.slab{padding:clamp(34px,5vw,76px) clamp(20px,5vw,80px);display:flex;flex-direction:column;align-items:start}.slab.cream{background:var(--papel)}.slab.lilac{background:var(--lila);border-left:1px solid var(--tinta)}.slab.petalo{background:var(--petalo)}.slab.olive{background:var(--oliva);color:#fff}.slab h2{font:600 clamp(50px,5.5vw,88px)/1.04 var(--serif);letter-spacing:-.075em;margin:32px 0 25px}.slab h2 em{color:var(--vino);font-weight:500}.slab.olive h2 em{color:var(--lila)}.slab p{max-width:480px;line-height:1.75;font-size:15px}.choicegrid{display:grid;grid-template-columns:1fr 1fr;gap:11px;width:100%;margin:24px 0 9px;max-width:500px}.choice{border:1px solid #6a4350;background:#ffffffa9;min-height:105px;text-align:left;padding:16px;display:flex;flex-direction:column;gap:13px;justify-content:space-between;transition:background .2s,transform .2s}.choice:hover{transform:translateY(-3px);background:#fff}.choice strong{font:600 23px/1.2 var(--serif);letter-spacing:-.03em}.choice:focus-visible{outline:3px solid var(--vino)}.choice.picked{background:var(--vino);color:#fff}.choice .num{font:10px var(--mono)}.little{font-size:12px!important;color:#5b4c4f}.note{margin-top:22px;border-top:1px solid currentColor;padding-top:14px;max-width:470px;font-size:11px;line-height:1.5;opacity:.8}
+.hero-word{font:600 clamp(75px,10vw,150px)/.83 var(--serif);letter-spacing:-.1em;word-break:normal;hyphens:none;margin:auto 0 0}.hero-word em{display:block;color:var(--vino);font-weight:500}.datecard{border:1px solid #391c31;background:#f9f1ee;max-width:540px;width:100%;box-shadow:12px 12px 0 #7d648b44;margin:auto 0;padding:28px 32px;transform:rotate(-2deg)}.datecard .stamp{font:10px var(--mono);text-transform:uppercase;letter-spacing:.1em;border-bottom:1px solid #cbb8af;padding-bottom:12px}.datecard h3{font:600 clamp(42px,5vw,69px)/1.04 var(--serif);letter-spacing:-.08em;margin:32px 0 8px}.datecard p{font-size:15px;line-height:1.6}.datecard .strike{text-decoration:line-through;text-decoration-color:var(--vino);text-decoration-thickness:3px;color:#8e827e}.datecard .real{color:var(--vino)}
+/* Story 3 — comparación de origen y circulación */
+.history{background:var(--papel);padding:58px clamp(20px,4vw,72px) 80px;min-height:calc(100vh - 170px)}
+.history-head{display:grid;grid-template-columns:.9fr 1fr;gap:36px;align-items:end;margin-bottom:38px}
+.history h2{font:600 clamp(57px,7vw,104px)/.98 var(--serif);letter-spacing:-.095em;margin:15px 0}
+.history h2 em{color:var(--vino);font-weight:500}
+.history-head p{font-size:16px;line-height:1.7;max-width:440px;justify-self:end}
+.compare{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;align-items:stretch}
+.compare-card{position:relative;min-height:280px;padding:clamp(24px,3vw,42px);display:flex;flex-direction:column;align-items:start;border:1px solid var(--tinta);animation:card-in .65s cubic-bezier(.22,.89,.24,1) both}
+.compare-card:first-child{background:#dedec7}.compare-card:last-child{background:var(--lila);animation-delay:.13s}
+.compare-tag{font:11px var(--mono);letter-spacing:.075em;text-transform:uppercase;border-bottom:1px solid currentColor;padding-bottom:10px;display:block;width:100%}
+.compare-year{font:600 clamp(67px,8vw,120px)/1 var(--serif);letter-spacing:-.09em;margin:18px 0 8px;color:var(--vino)}
+.compare-card h3{font:600 clamp(25px,3vw,40px)/1.15 var(--serif);letter-spacing:-.05em;margin:0 0 14px}
+.compare-card p{font-size:14px;line-height:1.65;margin:auto 0 0;max-width:460px}
+.compare-caption{background:var(--petalo);margin-top:16px;padding:23px clamp(22px,3vw,40px);border-left:4px solid var(--vino);display:flex;align-items:center;gap:24px;justify-content:space-between}
+.compare-caption strong{font:600 clamp(23px,3vw,36px)/1.2 var(--serif);letter-spacing:-.05em;max-width:410px}
+.compare-caption span{font-size:14px;line-height:1.6;max-width:530px}
+.history-actions{display:flex;align-items:center;justify-content:space-between;margin-top:30px;gap:20px}
+.history-actions span{font:11px var(--mono);color:#746966;line-height:1.5}
+@keyframes card-in{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+/* Story 4 */
+.final{display:grid;grid-template-columns:.95fr 1.05fr;min-height:calc(100vh - 170px)}.final-left{background:var(--oliva);color:var(--papel);padding:clamp(35px,5vw,80px) clamp(20px,5vw,80px)}.final h2{font:600 clamp(58px,6vw,95px)/1.04 var(--serif);letter-spacing:-.09em;margin:36px 0 30px}.final h2 em{display:block;color:var(--lila);font-weight:500}.final-left .lede{color:#efe7d7}.final-right{padding:clamp(40px,5vw,80px) clamp(20px,5vw,80px);background:var(--petalo);border-left:1px solid var(--tinta)}.final-right h3{font:600 clamp(31px,3vw,48px)/1.1 var(--serif);letter-spacing:-.05em;margin:18px 0 15px}.fact{padding:15px 0 17px;border-bottom:1px solid #8c7b6f;display:flex;gap:16px}.fact .idx{color:var(--vino);font:12px var(--mono)}.fact strong{font-size:14px;line-height:1.5}.fact small{display:block;font-size:12px;line-height:1.5;margin-top:7px}.sources{margin-top:26px;display:flex;flex-wrap:wrap;gap:8px}.sources a{display:inline-flex;align-items:center;background:#fff9f2;border:1px solid var(--vino);color:var(--vino);text-decoration:none;padding:12px 13px;font:11px var(--mono)}.sources a:hover{background:#fff}.end-actions{margin-top:34px;display:flex;gap:9px;flex-wrap:wrap}.userchoice{font-style:italic;color:#f4e9e7;font-size:13px;line-height:1.5;margin-top:24px}
+footer{padding:20px clamp(20px,4vw,72px);display:flex;align-items:center;justify-content:space-between;font-size:10px;gap:15px;font-family:var(--mono);color:#736a61;border-top:1px solid var(--borde);flex-wrap:wrap}footer strong{font:600 26px var(--serif);color:var(--vino);letter-spacing:-.08em}footer strong em{font-weight:500}footer strong .colon{color:#8e718d}
+/* RESPONSIVE */
+.footer-credits{flex-basis:100%;text-align:center;border-top:1px solid var(--borde);margin-top:3px;padding-top:15px;font:11px var(--sans);color:var(--tinta)}.footer-credits b{font-weight:700;color:var(--vino);margin-right:8px}
+@media(max-width:860px){.nav{height:69px}.brand{font-size:34px}.nav-right span{display:none}.intro{grid-template-columns:1fr}.intro-copy{padding:35px 0 27px}.intro h1{font-size:clamp(61px,12vw,100px)}.intro .lede{font-size:14px}.postcol{margin:0 -20px;border-top:1px solid var(--tinta);border-left:0;min-height:0;padding:23px 27px 38px}.post{max-width:440px;margin-top:18px}.split{grid-template-columns:1fr}.slab{min-height:0;padding:36px 22px}.slab.lilac{border-left:0;border-top:1px solid var(--tinta)}.slab h2{font-size:clamp(51px,10vw,77px);margin:22px 0 12px}.slab p{font-size:14px}.slab.cream{min-height:365px}.datecard{margin:20px 0}.hero-word{font-size:clamp(65px,14vw,120px);margin:35px 0 0}.history{padding:36px 20px 48px}.history-head{grid-template-columns:1fr;gap:0}.history h2{font-size:clamp(51px,10vw,88px)}.history-head p{justify-self:start;font-size:14px;margin:8px 0 17px}.timetabs button{padding:15px 10px;min-height:120px}.timetabs b{font-size:clamp(34px,7vw,54px)}.timetabs span{font-size:11px}.timeline-detail{grid-template-columns:1fr;gap:3px;padding:26px 22px}.timeline-detail p{font-size:13px}.timeline-detail h3{font-size:40px}.history-actions{flex-wrap:wrap}.final{grid-template-columns:1fr}.final-left,.final-right{padding:36px 22px}.final h2{font-size:clamp(58px,11vw,82px);margin:24px 0 17px}.final-right{border-left:0;border-top:1px solid var(--tinta)}}
+@media(max-width:450px){.topline{font-size:8px;padding:0 18px}.topline span:last-child{display:none}.nav{padding:0 18px}.nav-right{gap:0}.nav-right button{font-size:9px;padding:9px}.intro{margin:0 18px}.intro h1{font-size:clamp(55px,13.8vw,68px)}.intro-copy{padding-top:30px}.intro .meta{margin:18px 0}.postcol{margin:0 -18px;padding:20px 25px 28px}.post{width:95%;padding:11px}.post p{font-size:12px}.eclipse{height:220px}.choicegrid{gap:7px}.choice{padding:11px;min-height:110px}.choice strong{font-size:19px}.slab h2{font-size:51px}.hero-word{font-size:69px}.history h2{font-size:56px}.timetabs span{font-size:10px}.history-actions span{display:none}.fact{gap:10px}footer{padding:15px 18px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+/* ajustes responsive de la comparación de dos momentos */
+@media(max-width:860px){.compare-card{min-height:240px}.compare-year{font-size:clamp(56px,9vw,82px)}.compare-card h3{font-size:clamp(25px,3.9vw,36px)}.compare-caption{flex-direction:column;align-items:start;gap:9px}.compare-caption span{max-width:100%}}
+@media(max-width:580px){.compare{grid-template-columns:1fr;gap:10px}.compare-card{min-height:205px;padding:22px}.compare-year{font-size:65px;margin:12px 0 5px}.compare-card h3{font-size:29px;margin-bottom:12px}.compare-card p{margin-top:8px;font-size:13px}.compare-caption{padding:21px}.compare-caption strong{font-size:25px}.compare-caption span{font-size:13px}.history-actions{align-items:stretch;flex-direction:column}.history-actions button{width:100%}}
+</style>
+</head>
+<body>
+<div class="app">
+<div class="topline"><span>No todo es como lo viste.</span><span>Una historia · Cuatro momentos · 90 segundos aprox.</span></div>
+<header class="nav"><a href="#" class="brand" id="brand" aria-label="re:visto, volver al inicio">re<span class="colon">:</span><em>visto</em></a><div class="nav-right"><span>Experiencia 001 / Fuera de contexto</span><button id="resetTop" type="button">Reiniciar ↺</button></div></header>
+<div class="progress" role="progressbar" aria-label="Progreso de la experiencia" aria-valuemin="0" aria-valuemax="4" aria-valuenow="1" id="progress"><i id="progressBar"></i></div>
+<main id="main">
+<section class="scene active" id="s1" aria-labelledby="startTitle">
+ <div class="intro">
+  <div class="intro-copy">
+   <div class="eyebrow">Capítulo 01 / Apareció en tu feed</div>
+   <h1 id="startTitle">Este video <em>es real.</em>¿Y la historia?</h1>
+   <p class="lede">En agosto de 2026, un video de un eclipse en una playa volvió a circular en redes. La publicación aseguraba que era de ese momento. ¿Tú qué habrías pensado?</p>
+   <button class="primary" id="start" type="button">Pruébalo tú <span class="arrow">↗</span></button>
+   <div class="meta">Caso real · Verificación AFP · Agosto de 2026</div>
+  </div>
+  <aside class="postcol">
+   <div class="posthead"><span>Así podría verse en tu feed</span><span>↗</span></div>
+   <article class="post" aria-label="Publicación recreada">
+    <div class="postprofile"><div class="avatar">✳</div><div>Actualidad viral <small>Publicación recreada · No es una cuenta real</small></div><span style="margin-left:auto">···</span></div>
+    <div class="eclipse" role="img" aria-label="Ilustración de un eclipse visto desde una playa; no es un fotograma del video original">
+     <div class="horizon"></div><div class="silhouette"></div><div class="silhouette"></div><div class="silhouette"></div><div class="silhouette"></div><div class="silhouette"></div>
+    </div>
+    <p>🌑 Así se vivió el eclipse de agosto de 2026 desde una playa. ¡Impresionante!</p>
+    <div class="tags">#eclipse #viral #actualidad</div>
+    <div class="micro"><span>♡ Me gusta</span><span>↗ Compartir</span><span>♧ Guardar</span></div>
+    <div class="post-annot">Recreación visual · no reproduce material de terceros</div>
+   </article>
+   <span class="bubble">La historia empieza aquí ↘</span>
+  </aside>
+ </div>
+</section>
+<section class="scene" id="s2" aria-labelledby="questionTitle">
+ <div class="split">
+  <div class="slab cream">
+   <div class="eyebrow">Capítulo 02 / Primera impresión</div>
+   <h2 id="questionTitle">¿Te lo <em>habrías creído?</em></h2>
+   <p>El eclipse de agosto de 2026 sí ocurrió. El video también es real. No parece haber nada extraño…</p>
+   <p class="little">No buscamos una respuesta correcta. Queremos mostrar cómo una publicación puede parecer creíble antes de revisar su origen.</p>
+   <div class="choicegrid" aria-label="Elige tu primera impresión">
+     <button class="choice" type="button" data-choice="creeria"><span class="num">A / INSTINTO</span><strong>Sí, se ve real.</strong></button>
+     <button class="choice" type="button" data-choice="dudaria"><span class="num">B / SOSPECHA</span><strong>Algo me haría dudar.</strong></button>
+   </div>
+   <div class="note" id="choiceTip">Elige una opción para continuar con el descubrimiento.</div>
+   <button class="primary" id="reveal" type="button" disabled hidden>Descubrir el detalle <span class="arrow">→</span></button>
+  </div>
+  <div class="slab lilac">
+   <div class="eyebrow">Antes de compartir</div>
+   <div class="datecard"><div class="stamp">Una pista importante</div><h3>¿Cuándo?<br><span class="real">¿Dónde?</span></h3><p>Que un video sea auténtico no significa que la fecha y el lugar escritos en la publicación sean correctos.</p><small>Elige tu impresión para descubrir qué ocurrió.</small></div>
+   <p class="note">En la siguiente pantalla vas a ver de dónde salió realmente esta grabación.</p>
+  </div>
+ </div>
+</section>
+<section class="scene" id="s3" aria-labelledby="historyTitle">
+ <div class="history">
+  <div class="history-head">
+   <div><div class="eyebrow">Capítulo 03 / El descubrimiento</div><h2 id="historyTitle">El video es real. <em>El contexto cambió.</em></h2></div>
+   <p>Se compartió como si fuera una grabación reciente de Europa. Pero ya existía años antes, y se había filmado en Chile.</p>
+  </div>
+  <div class="compare" aria-label="Comparación entre el origen real del video y la publicación engañosa">
+   <article class="compare-card">
+    <div class="compare-tag">01 / El origen real</div>
+    <div class="compare-year">2019</div>
+    <h3>La Serena, Chile</h3>
+    <p>El video muestra el eclipse del <strong>2 de julio de 2019</strong>. La grabación ya estaba publicada en internet el 3 de julio de ese año.</p>
+   </article>
+   <article class="compare-card">
+    <div class="compare-tag">02 / El contexto engañoso</div>
+    <div class="compare-year">2026</div>
+    <h3>Europa</h3>
+    <p>En agosto de 2026, el mismo video circuló en redes como si mostrara el eclipse ocurrido ese mes en Europa.</p>
+   </article>
+  </div>
+  <div class="compare-caption"><strong>¿Qué cambió entre ambas publicaciones?</strong><span>La grabación no cambió. Cambiaron <b>la fecha y el lugar que la publicación le atribuyó</b>. Un video auténtico también puede utilizarse para desinformar.</span></div>
+  <div class="history-actions"><span>Fuentes contrastadas: AFP Factual · NASA</span><button class="primary" id="finish" type="button">¿Cómo lo comprobaron? <span class="arrow">→</span></button></div>
+ </div>
+</section>
+<section class="scene" id="s4" aria-labelledby="endTitle">
+ <div class="final">
+  <div class="final-left">
+   <div class="eyebrow">Capítulo 04 / Ahora ves más</div>
+   <h2 id="endTitle">El video era real. <em>El contexto, falso.</em></h2>
+   <p class="lede">Una imagen auténtica puede desinformar cuando se comparte con una fecha, un lugar o una explicación equivocados.</p>
+   <div class="userchoice" id="userChoice"></div>
+   <div class="end-actions"><button class="primary" id="restart" type="button">Ver de nuevo <span class="arrow">↺</span></button></div>
+  </div>
+  <div class="final-right">
+   <div class="eyebrow">Tres pistas para comprobarlo</div>
+   <h3>¿Cómo sabemos de dónde salió?</h3>
+   <div class="fact"><span class="idx">01</span><div><strong>El video ya estaba publicado en julio de 2019.</strong><small>AFP encontró versiones del 3 de julio de 2019 mediante búsqueda inversa de fotogramas.</small></div></div>
+   <div class="fact"><span class="idx">02</span><div><strong>La playa era La Serena, Chile.</strong><small>Publicaciones anteriores y referencias visuales permitieron identificar el lugar.</small></div></div>
+   <div class="fact"><span class="idx">03</span><div><strong>El eclipse europeo sí ocurrió en 2026.</strong><small>NASA confirma el fenómeno y su recorrido. Eso no convierte a cualquier video en un registro de ese eclipse.</small></div></div>
+   <h3 style="font-size:28px;margin-top:33px">Mira las fuentes reales</h3>
+   <div class="sources"><a href="https://factual.afp.com/doc.afp.com.C4PF4CQ" target="_blank" rel="noopener noreferrer">AFP Factual · Verificación del video ↗</a><a href="https://science.nasa.gov/eclipses/future-eclipses/total-solar-eclipse-on-august-12-2026/" target="_blank" rel="noopener noreferrer">NASA · Eclipse de agosto de 2026 ↗</a></div>
+   <p style="font-size:11px;line-height:1.6;margin-top:20px;color:#6a5b55">Las capturas y el video original pertenecen a sus respectivos autores. Por eso esta demo utiliza una ilustración creada con CSS y enlaza las verificaciones publicadas.</p>
+  </div>
+ </div>
+</section>
+</main>
+<footer><strong>re<span class="colon">:</span><em>visto</em></strong><span>No todo es como lo viste. · Experiencia interactiva piloto</span><span>Fuentes documentadas · Recreación educativa · Chile, 2026</span><div class="footer-credits"><b>Desarrolladores</b> Francisca Aravena Yáñez y Antonia Zúñiga</div></footer>
+</div>
+<script>
+(function(){
+ const scenes=[...document.querySelectorAll('.scene')];const bar=document.getElementById('progressBar'),prog=document.getElementById('progress');const $=id=>document.getElementById(id);
+ let choice='';let current=0;
+ function goto(i){ current=Math.min(3,Math.max(0,i)); scenes.forEach((s,k)=>{s.classList.toggle('active',k===current);s.setAttribute('aria-hidden',k===current?'false':'true')});bar.style.width=`${(current+1)*25}%`;prog.setAttribute('aria-valuenow',String(current+1));window.scrollTo({top:0,behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});document.title=['re:visto — El video era real','re:visto — Primera impresión','re:visto — El origen del video','re:visto — Descubre las fuentes'][current]}
+ function reset(){choice='';document.querySelectorAll('.choice').forEach(e=>e.classList.remove('picked'));$('reveal').hidden=true;$('reveal').disabled=true;$('choiceTip').textContent='Elige una opción para continuar con el descubrimiento.';goto(0)}
+ $('brand').addEventListener('click',e=>{e.preventDefault();reset()});$('resetTop').addEventListener('click',reset);$('restart').addEventListener('click',reset);$('start').addEventListener('click',()=>goto(1));
+ document.querySelectorAll('[data-choice]').forEach(el=>el.addEventListener('click',()=>{choice=el.dataset.choice;document.querySelectorAll('[data-choice]').forEach(b=>b.classList.toggle('picked',b===el));$('choiceTip').textContent=choice==='creeria'?'Es una reacción comprensible: las imágenes auténticas pueden hacernos confiar en el texto que las acompaña.':'Tiene sentido dudar: una imagen no siempre demuestra cuándo ni dónde se grabó.';$('reveal').hidden=false;$('reveal').disabled=false}));
+ $('reveal').addEventListener('click',()=>goto(2));$('finish').addEventListener('click',()=>{$('userChoice').textContent=choice==='creeria'?'Al principio te habría parecido creíble. Ahora ya sabes qué revisar: fecha, lugar y origen del registro.':'Tu sospecha tenía fundamento. Pero para comprobarla hicieron falta pruebas, no solo intuición.';goto(3)});
+ goto(0);
+})();
+</script>
+</body>
+</html>
